@@ -1,0 +1,19 @@
+---------------------------------GROUP BY DATE
+
+SELECT DATE_FORMAT(created_at, '%Y-%m-%d'), COUNT(id)
+FROM your_table
+WHERE created_at>=NOW()-INTERVAL 5 DAY
+GROUP BY 1
+ORDER BY 1 DESC;
+
+
+--------------------------------Show all user names that contains number only
+
+SELECT *
+FROM your_table AS u
+WHERE u.user_name REGEXP '^[0-9]+[0-9].[0-9]$'
+	OR (u.user_name REGEXP '^[0-9][0-9]$'
+		AND u.user_name LIKE '__')
+	OR (u.user_name REGEXP '^[0-9]'
+		AND u.user_name LIKE '_')
+;
